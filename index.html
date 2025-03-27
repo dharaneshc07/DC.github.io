@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dharanesh Chandrashekar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #1e40af;
+            --accent: #60a5fa;
+            --text: #e5e7eb;
+            --light: #1f2937;
+            --dark: #111827;
+            --highlight: #f59e0b;
+            --card-bg: #1f2937;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background-color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        .dots-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+       
+        
+        /* ===== Base Layout ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        /* ===== Header ===== */
+        header {
+            padding: 25px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: left;
+            position: sticky;
+            top: 0;
+            background-color: rgba(17, 24, 39, 0.95);
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* ===== Hero Section ===== */
+        .hero {
+            padding: 80px 0 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: left;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            max-width: 700px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #d1d5db;
+        }
+        
+        .contact-item a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+        
+        /* ===== Section Titles ===== */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        /* ===== Skills Section ===== */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-card {
+            background: white;
+            border-radius: 8px;
+            padding: 12px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .skill-icon {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+        
+        .skill-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1f2937;
+            text-align: center;
+        }
+        
+        /* ===== Experience & Education ===== */
+        .timeline-item {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .item-subtitle {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .item-date {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        .item-description {
+            line-height: 1.7;
+        }
+        
+        .highlight {
+            color: var(--highlight);
+            font-weight: 600;
+        }
+
+        .module-list {
+            display: grid;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .module-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: rgba(59, 130, 246, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .module-item:hover {
+            transform: translateX(5px);
+            background-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .module-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .module-text {
+            flex: 1;
+        }
+        
+        /* ===== Projects ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .project-description {
+            color: #d1d5db;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .tech-tag {
+            background-color: #1e40af;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background-color: var(--primary);
+            transition: background-color 0.3s;
+        }
+        
+        .project-link:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Education Section */
+        .education-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .education-item {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .education-item:hover {
+            transform: translateX(5px);
+        }
+
+        /* Extracurricular Activities */
+        .activities-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .activity-item {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .activity-item:hover {
+            transform: translateX(5px);
+        }
+        
+        /* ===== Footer ===== */
+        footer {
+            background-color: var(--card-bg);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .social-link {
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        /* ===== Responsive Breakpoints ===== */
+        
+        /* Tablets (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .skills-container {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+        }
+        
+        /* Small Tablets (600px - 768px) */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                gap: 15px;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 50px 0;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+                margin-bottom: 30px;
+            }
+        }
+        
+        /* Mobile Devices (up to 600px) */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-container {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+                gap: 10px;
+            }
+            
+            .skill-card {
+                padding: 10px 5px;
+            }
+            
+            .skill-icon {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .skill-name {
+                font-size: 0.7rem;
+            }
+            
+            .timeline-item {
+                padding: 20px;
+            }
+            
+            .item-title {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Small Mobile Devices (up to 400px) */
+        @media (max-width: 400px) {
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                font-size: 0.9rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="dots-bg"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">Dharanesh Chandrashekar</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1><span>Dharanesh Chandrashekar</span></h1>
+            <p>Motivated master's student with a strong foundation in data science, programming, and statistical analysis. Experienced in Python, R, and SQL, with a proven ability to analyze complex datasets, develop machine learning models, and create insightful data visualizations.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+07553995656">07553995656</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:Dharaneshchandrashekar@gmail.com">Dharaneshchandrashekar@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>I'm a motivated Data Science graduate with expertise in machine learning, statistical analysis, and data visualization. I have strong problem-solving skills and a keen interest in learning new technologies. I'm seeking a full-time role to apply my analytical expertise and technical knowledge in a dynamic, growth-oriented environment.</p>
+                <p>With multiple internships at companies like IBM and Inventeron, I've developed strong technical skills in data analysis and machine learning. My projects demonstrate my ability to build practical solutions like fraud detection systems and pharmacy management tools.</p>
+                <p>When I'm not coding, you can find me participating in hackathons or cultural events. I believe in continuous learning and regularly take online courses to stay updated with the latest technologies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <!-- Languages -->
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg" alt="C" class="skill-icon">
+                    <span class="skill-name">C</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++" class="skill-icon">
+                    <span class="skill-name">C++</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML" class="skill-icon">
+                    <span class="skill-name">HTML</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS" class="skill-icon">
+                    <span class="skill-name">CSS</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript" class="skill-icon">
+                    <span class="skill-name">JavaScript</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" class="skill-icon">
+                    <span class="skill-name">Python</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://www.r-project.org/logo/Rlogo.svg" alt="R" class="skill-icon">
+                    <span class="skill-name">R</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="SQL" class="skill-icon">
+                    <span class="skill-name">SQL</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Bash_Logo_Colored.svg" alt="Bash" class="skill-icon">
+                    <span class="skill-name">Bash</span>
+                </div>
+
+                <!-- Frameworks & Libraries -->
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg" alt="Bootstrap" class="skill-icon">
+                    <span class="skill-name">Bootstrap</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/NumPy_logo_2020.svg" alt="NumPy" class="skill-icon">
+                    <span class="skill-name">NumPy</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pandas_logo.svg" alt="Pandas" class="skill-icon">
+                    <span class="skill-name">Pandas</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg" alt="TensorFlow" class="skill-icon">
+                    <span class="skill-name">TensorFlow</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Matplotlib_icon.svg" alt="Matplotlib" class="skill-icon">
+                    <span class="skill-name">Matplotlib</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Keras_logo.svg" alt="Keras" class="skill-icon">
+                    <span class="skill-name">Keras</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Plotly-logo.png" alt="Plotly" class="skill-icon">
+                    <span class="skill-name">Plotly</span>
+                </div>
+
+                <!-- Tools & Platforms -->
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Android_Studio_Icon_3.6.svg" alt="Android Studio" class="skill-icon">
+                    <span class="skill-name">Android Studio</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" alt="VS Code" class="skill-icon">
+                    <span class="skill-name">VS Code</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" alt="Jupyter" class="skill-icon">
+                    <span class="skill-name">Jupyter</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" class="skill-icon">
+                    <span class="skill-name">AWS</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Colaboratory_SVG_Logo.svg" alt="Colab" class="skill-icon">
+                    <span class="skill-name">Google Colab</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg" alt="Git" class="skill-icon">
+                    <span class="skill-name">Git</span>
+                </div>
+
+                <!-- Databases -->
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/SAS_logo_horiz.svg" alt="SAS" class="skill-icon">
+                    <span class="skill-name">SAS</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg" alt="MongoDB" class="skill-icon">
+                    <span class="skill-name">MongoDB</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/MySQL_logo.svg/1280px-MySQL_logo.svg.png" alt="MySQL" class="skill-icon">
+                    <span class="skill-name">MySQL</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL" class="skill-icon">
+                    <span class="skill-name">PostgreSQL</span>
+                </div>
+
+                <!-- Data Visualization -->
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/20/Power_BI_logo.svg/140px-Power_BI_logo.svg.png" alt="Power BI" class="skill-icon">
+                    <span class="skill-name">Power BI</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Tableau_Logo.png" alt="Tableau" class="skill-icon">
+                    <span class="skill-name">Tableau</span>
+                </div>
+                <div class="skill-card">
+                    <img src="https://seaborn.pydata.org/_static/logo-wide-lightbg.svg" alt="Seaborn" class="skill-icon">
+                    <span class="skill-name">Seaborn</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-container">
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <h3 class="item-title">MSc Data Science and Analytics</h3>
+                            <p class="item-subtitle">Cardiff University</p>
+                        </div>
+                        <p class="item-date">Sep 2024 - Sep 2025</p>
+                    </div>
+                    <div class="item-description">
+                        <p>Relevant modules:</p>
+                        <div class="module-list">
+                            <div class="module-item">
+                                <div class="module-icon">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                
+                                    <strong>Computational Data Science</strong>
+                                </div>
+                            </div>
+                            <div class="module-item">
+                                <div class="module-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                
+                                    <strong>Operational Research</strong> 
+                            </div>
+                            <div class="module-item">
+                                <div class="module-icon">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                
+                                    <strong>Statistics</strong>
+                                </div>
+                            </div>
+                            <div class="module-item">
+                                <div class="module-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="module-text">
+                                    <strong>Applied Machine Learning</strong> 
+                                </div>
+                            </div>
+                            <div class="module-item">
+                                <div class="module-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="module-text">
+                                    <strong>Database and Modelling</strong>
+                                </div>
+                            </div>
+                            <div class="module-item">
+                                <div class="module-icon">
+                                    <i class="fas fa-chart-pie"></i>
+                                </div>
+                                <div class="module-text">
+                                    <strong>Data Visualization</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+        <div class="container">            
+            <div class="education-container">
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <h3 class="item-title">B.E Information Science and Engineering</h3>
+                            <p class="item-subtitle">Malnad College of Engineering, India</p>
+                        </div>
+                        <p class="item-date">Aug 2020 - May 2024</p>
+                    </div>
+                    <div class="item-description">
+                        <p>Grade: <span class="highlight">6.50 CGPA</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-container">
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <h3 class="item-title">Database Intern</h3>
+                            <p class="item-subtitle">IBM, India</p>
+                        </div>
+                        <p class="item-date">Jan 2024 - Mar 2024</p>
+                    </div>
+                    <div class="item-description">
+                        <p>• Optimized database handling, <span class="highlight">increasing efficiency by 30%</span> using SAS tools.</p>
+                        <p>• Improved SQL query performance, <span class="highlight">cutting processing time by 25%</span>.</p>
+                        <p>• Designed and maintained database structures, <span class="highlight">boosting data retrieval speed by 20%</span>.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <h3 class="item-title">AI and ML Intern</h3>
+                            <p class="item-subtitle">Inventeron, India</p>
+                        </div>
+                        <p class="item-date">May 2023 - Aug 2023</p>
+                    </div>
+                    <div class="item-description">
+                        <p>• Enhanced sales forecasting models, <span class="highlight">improving accuracy by 15%</span> with NumPy, Pandas, and Matplotlib.</p>
+                        <p>• <span class="highlight">Increased model accuracy by 20%</span> through data cleaning, feature engineering, and EDA.</p>
+                        <p>• Optimized time series models, <span class="highlight">boosting prediction accuracy by 18%</span>.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <h3 class="item-title">Data Science Intern</h3>
+                            <p class="item-subtitle">ICT Academy, India</p>
+                        </div>
+                        <p class="item-date">Jun 2022 - Aug 2022</p>
+                    </div>
+                    <div class="item-description">
+                        <p>• Completed <span class="highlight">5+ webinars</span> on TensorFlow, Pandas, and Spark MLlib, enhancing technical skills.</p>
+                        <p>• <span class="highlight">Improved model accuracy by 25%</span> by fine-tuning machine learning algorithms.</p>
+                        <p>• <span class="highlight">Reduced data preprocessing time by 30%</span> while maintaining model performance.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="item-header">
+                        <div>
+                            <h3 class="item-title">Data Science Trainee</h3>
+                            <p class="item-subtitle">Open Weaver, India</p>
+                        </div>
+                        <p class="item-date">Sep 2022 - Dec 2022</p>
+                    </div>
+                    <div class="item-description">
+                        <p>• Led data integration and optimized API performance, <span class="highlight">decreasing latency by 40%</span>.</p>
+                        <p>• <span class="highlight">Enhanced platform scalability by 35%</span> and increased processing speed by 25%.</p>
+                        <p>• Improved data storage solutions, <span class="highlight">increasing retrieval speed by 20%</span>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Pharmacy Management System</h3>
+                            <a href="https://github.com/dharaneshc07/Pharmacy-management-System-" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                        <p class="project-description">
+                            Automated pharmacy operations using SQL and PHP, reducing processing time by 30% and improving accuracy through barcode integration. Features inventory tracking and prescription management.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">Database Design</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Voice Suppression Using Deep Learning</h3>
+                            <a href="https://github.com/dharaneshc07/voice-Suppression-using-deep-leaerning-" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                        <p class="project-description">
+                            Developed a deep learning model to suppress background noise, enhancing speech clarity by 40%. Implemented using TensorFlow and Keras with custom audio processing pipelines.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Audio Processing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Drowsiness Detection</h3>
+                            <a href="https://github.com/dharaneshc07/Drowsiness-detection-" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                        <p class="project-description">
+                            Real-time driver monitoring system using OpenCV and CNNs. Achieved 95% accuracy in detecting drowsy states through eye aspect ratio analysis with configurable alerts.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">CNN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Bank Fraud Detection</h3>
+                            <a href="https://github.com/dharaneshc07/Bank-fraud-detection-" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                        <p class="project-description">
+                            Implemented an ML model to detect fraudulent transactions with 95% accuracy, minimizing false positives by 20%. Used ensemble methods and anomaly detection techniques.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Fraud Detection</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Hate Speech Detection</h3>
+                            <a href="https://github.com/dharaneshc07/Hate-Speach-Detection-" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                        <p class="project-description">
+                            Developed a hate speech detection system using RoBERTa and traditional ML models, achieving 94% accuracy and optimizing F1-score by 15% through class balancing and threshold tuning.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">NLPAug</span>
+                            <span class="tech-tag">ROberta</span>
+                            <span class="tech-tag">Logistic Regression</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Data Visualization</h3>
+                            <a href="https://github.com/dharaneshc07/Data-Visualization-" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                        <p class="project-description">
+                            an interactive dashboard analyzing 237 countries’ quality of life metrics. Automated data cleaning for 10+ numerical/categorical columns, reducing preprocessing time by 30% and improving visualization accuracy.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Dash</span>
+                            <span class="tech-tag">Plotly</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extracurricular Activities -->
+    <section id="activities" class="section">
+        <div class="container">
+            <h2 class="section-title">Extracurricular Activities</h2>
+            <div class="activities-container">
+                <div class="activity-item">
+                    <h3>Student Coordinator</h3>
+                    <p class="item-subtitle">Malnad Cultural Association, Hassan</p>
+                    <p class="item-date">Aug 2021 - May 2024</p>
+                    <div class="item-description">
+                        <p>• Coordinated cultural events and represented the college in prestigious national and state-level competitions, including Incridea (2022, 2024), VTU Youth Fest (2024), and Sargam (2023).</p>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <h3>Athlete</h3>
+                    <p class="item-subtitle">CBSE Zone Level Competition, Chennai</p>
+                    <p class="item-date">Dec 2017</p>
+                    <div class="item-description">
+                        <p>• Competed in the CBSE Zone Level Competition in 2017, showcasing athletic skills and teamwork.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="social-links">
+                <a href="https:www.linkedin.com/in/dharanesh-chandrashekar-47a5aa2b3" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/dharaneshc07" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="copyright">© 2025 Dharanesh Chandrashekar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced cursor dot effect
+        const cursorDot = document.querySelector('.cursor-dot');
+        const dots = [];
+        const dotCount = 12;
+        
+        // Create trailing dots
+        for (let i = 0; i < dotCount; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'cursor-dot';
+            dot.style.width = `${20 - (i * 1.5)}px`;
+            dot.style.height = `${20 - (i * 1.5)}px`;
+            dot.style.opacity = `${1 - (i * 0.08)}`;
+            dot.style.transition = `transform 0.${i + 1}s ease, opacity 0.${i + 1}s ease`;
+            document.body.appendChild(dot);
+            dots.push(dot);
+        }
+        
+        // Main cursor movement
+        document.addEventListener('mousemove', (e) => {
+            const { clientX: x, clientY: y } = e;
+            
+            // Update main cursor dot
+            cursorDot.style.left = `${x}px`;
+            cursorDot.style.top = `${y}px`;
+            
+            // Update trailing dots with delay
+            dots.forEach((dot, index) => {
+                setTimeout(() => {
+                    dot.style.left = `${x}px`;
+                    dot.style.top = `${y}px`;
+                }, index * 30);
+            });
+        });
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.timeline-item, .project-card, .skill-card, .activity-item, .education-item, .module-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state
+        document.querySelectorAll('.timeline-item, .project-card, .skill-card, .activity-item, .education-item, .module-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'all 0.5s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
